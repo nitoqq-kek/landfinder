@@ -1,0 +1,5 @@
+Django==1.9.7
+django-bootstrap3==7.0.1
+django-tables2==1.2.2
+Pillow==3.3.0
+qrcode==5.3

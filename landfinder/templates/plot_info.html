@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block title %}
+    {{ plot.name }}
+{% endblock %}
+
+{% block content %}
+    <p>Название: {{ plot.name }}</p>
+    <p>Номер: {{ plot.number }}</p>
+    <p>Площадь: {{ plot.square }}</p>
+    {% if user.is_staff %}
+    <p>Кадастровая соимость: {{ plot.price }}</p>
+    {% endif %}
+    <img id='qr-code-image-{{ plot.id }}' src="{{ plot.qr_code_url }}" style="width: 300px; height: 300px;"/>
+    {% buttons %}
+    <button type="button" class="btn" onclick="printImg('qr-code-image-{{ plot.id }}')">
+        {% bootstrap_icon "print" %} Печать
+    </button>
+    {% endbuttons %}
+{% endblock %}
+
+{% block scripts %}
+   <script type="text/javascript">
+    function printImg(id) {
+        var popup = window.open(document.getElementById(id).src);
+        popup.focus(); // Required for IE
+        popup.print()
+    }
+    </script>
+{% endblock %}
